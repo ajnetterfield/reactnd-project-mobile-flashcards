@@ -3,7 +3,7 @@ import { ScrollView, View } from 'react-native';
 
 import Deck from './Deck';
 
-// TODO: Replace with real data
+// TODO: Retrieve data from Local Storage
 import decks from '../utils/data';
 
 export default class DeckList extends React.Component {
