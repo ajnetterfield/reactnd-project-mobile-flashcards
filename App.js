@@ -8,6 +8,7 @@ import { Provider } from 'react-redux';
 import ConfigurableStatusBar from './components/ConfigurableStatusBar';
 import DeckList from './components/DeckList';
 import DeckShow from './components/DeckShow';
+import NewCard from './components/NewCard';
 import NewDeck from './components/NewDeck';
 
 import reducer from './reducers';
@@ -65,6 +66,16 @@ const MainNavigator = createStackNavigator({
         backgroundColor: green
       },
       headerTintColor: white
+    }
+  },
+  NewCard: {
+    screen: NewCard,
+    navigationOptions: {
+      headerStyle: {
+        backgroundColor: green
+      },
+      headerTintColor: white,
+      title: 'Add Card'
     }
   }
 });

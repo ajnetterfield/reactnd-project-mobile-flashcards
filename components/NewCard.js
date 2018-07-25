@@ -3,18 +3,25 @@ import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-nativ
 
 import { green, white } from '../utils/colors';
 
-export default class NewDeck extends React.Component {
+export default class NewCard extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      title: ''
+      answer: '',
+      question: ''
     };
   }
 
-  handleChangeText = (title) => {
+  handleChangeAnswer = (answer) => {
     this.setState({
-      title
+      answer
+    });
+  }
+
+  handleChangeQuestion = (question) => {
+    this.setState({
+      question
     });
   }
 
@@ -25,13 +32,22 @@ export default class NewDeck extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.label}>What is the title of your new deck?</Text>
+        <Text style={styles.label}>Question</Text>
 
         <TextInput
-          onChangeText={this.handleChangeText}
+          onChangeText={this.handleChangeQuestion}
           style={styles.textInput}
-          placeholder="Deck Title"
-          value={this.state.title}
+          placeholder="Question"
+          value={this.state.question}
+        />
+
+        <Text style={styles.label}>Answer</Text>
+
+        <TextInput
+          onChangeText={this.handleChangeAnswer}
+          style={styles.textInput}
+          placeholder="Answer"
+          value={this.state.answer}
         />
 
         <TouchableOpacity

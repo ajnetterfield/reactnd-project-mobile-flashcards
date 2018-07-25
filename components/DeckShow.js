@@ -8,8 +8,14 @@ import { green, white } from '../utils/colors';
 import decks from '../utils/data';
 
 class DeckShow extends React.Component {
-  handleAddCard = () => {
-    // TODO: Navigate to new card view
+  static navigationOptions = ({ navigation }) => ({
+    title: navigation.state.params.title
+  });
+
+  handleNewCard = (title) => {
+    this.props.navigation.navigate('NewCard', {
+      title: title
+    });
   }
 
   handleStartQuiz = () => {
@@ -30,7 +36,7 @@ class DeckShow extends React.Component {
         </View>
 
         <View style={styles.buttons}>
-          <TouchableOpacity onPress={this.handleAddCard} style={[styles.button, styles.buttonSecondary]}>
+          <TouchableOpacity onPress={() => this.handleNewCard(deck.title)} style={[styles.button, styles.buttonSecondary]}>
             <Text style={[styles.buttonText, styles.buttonTextSecondary]}>Add Card</Text>
           </TouchableOpacity>
 
@@ -64,7 +70,10 @@ const styles = StyleSheet.create({
     backgroundColor: green,
     borderRadius: 5,
     height: 40,
-    padding: 10
+    paddingBottom: 10,
+    paddingLeft: 30,
+    paddingRight: 30,
+    paddingTop: 10
   },
   buttonText: {
     color: white,
