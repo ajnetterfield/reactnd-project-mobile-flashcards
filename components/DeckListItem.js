@@ -1,21 +1,24 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-export default class Deck extends React.Component {
+export default class DeckListItem extends React.Component {
   render() {
     const { deck } = this.props;
 
     return (
-      <View style={styles.deck}>
+      <View style={styles.container}>
         <Text style={styles.title}>{deck.title}</Text>
-        <Text style={styles.cardCount}>{deck.questions.length} cards</Text>
+
+        <Text style={styles.cardCount}>
+          {deck.questions.length} {deck.questions.length === 1 ? 'card' : 'cards'}
+        </Text>
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  deck: {
+  container: {
     alignItems: 'center',
     backgroundColor: '#fff',
     borderBottomColor: '#000',

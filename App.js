@@ -1,13 +1,20 @@
 import React from 'react';
-import { createBottomTabNavigator } from 'react-navigation';
+import { createBottomTabNavigator, createStackNavigator } from 'react-navigation';
+import { createStore } from 'redux';
 import { Ionicons } from '@expo/vector-icons';
 import { Platform, StyleSheet, Text, View } from 'react-native';
+import { Provider } from 'react-redux';
 
 import ConfigurableStatusBar from './components/ConfigurableStatusBar';
 import DeckList from './components/DeckList';
+import DeckShow from './components/DeckShow';
 import NewDeck from './components/NewDeck';
 
+import reducer from './reducers';
+
 import { green, white } from './utils/colors';
+
+const store = createStore(reducer);
 
 const Tabs = createBottomTabNavigator({
   DeckList: {
@@ -44,17 +51,37 @@ const Tabs = createBottomTabNavigator({
   }
 });
 
+const MainNavigator = createStackNavigator({
+  Home: {
+    screen: Tabs,
+    navigationOptions: {
+      header: null
+    }
+  },
+  DeckShow: {
+    screen: DeckShow,
+    navigationOptions: {
+      headerStyle: {
+        backgroundColor: green
+      },
+      headerTintColor: white
+    }
+  }
+});
+
 export default class App extends React.Component {
   render() {
     return (
-      <View style={{ flex: 1 }}>
-        <ConfigurableStatusBar
-          backgroundColor={green}
-          barStyle='light-content'
-        />
+      <Provider store={store}>
+        <View style={{ flex: 1 }}>
+          <ConfigurableStatusBar
+            backgroundColor={green}
+            barStyle='light-content'
+          />
 
-        <Tabs />
-      </View>
+          <MainNavigator />
+        </View>
+      </Provider>
     );
   }
 }

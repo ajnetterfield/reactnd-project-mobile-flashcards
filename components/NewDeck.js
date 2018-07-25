@@ -24,7 +24,7 @@ export default class DeckList extends React.Component {
 
   render() {
     return (
-      <View style={styles.form}>
+      <View style={styles.container}>
         <Text style={styles.label}>What is the title of your new deck?</Text>
 
         <TextInput
@@ -46,8 +46,9 @@ export default class DeckList extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  form: {
+  container: {
     alignItems: 'center',
+    backgroundColor: white,
     flex: 1,
     padding: 30
   },
