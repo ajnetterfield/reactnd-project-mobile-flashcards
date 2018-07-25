@@ -9,7 +9,7 @@ import decks from '../utils/data';
 
 class DeckShow extends React.Component {
   static navigationOptions = ({ navigation }) => ({
-    title: navigation.state.params.title
+    title: `${navigation.state.params.title} Deck`
   });
 
   handleNewCard = (title) => {
@@ -18,8 +18,10 @@ class DeckShow extends React.Component {
     });
   }
 
-  handleStartQuiz = () => {
-    // TODO: Navigate to quiz view
+  handleStartQuiz = (title) => {
+    this.props.navigation.navigate('Quiz', {
+      title: title
+    });
   }
 
   render() {
@@ -35,14 +37,16 @@ class DeckShow extends React.Component {
           </Text>
         </View>
 
-        <View style={styles.buttons}>
+        <View style={{ marginBottom: 60 }}>
           <TouchableOpacity onPress={() => this.handleNewCard(deck.title)} style={[styles.button, styles.buttonSecondary]}>
             <Text style={[styles.buttonText, styles.buttonTextSecondary]}>Add Card</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity onPress={this.handleStartQuiz} style={[styles.button, { marginTop: 10 }]}>
-            <Text style={styles.buttonText}>Start Quiz</Text>
-          </TouchableOpacity>
+          {deck.questions.length > 0 &&
+            <TouchableOpacity onPress={() => this.handleStartQuiz(deck.title)} style={[styles.button, { marginTop: 10 }]}>
+              <Text style={styles.buttonText}>Start Quiz</Text>
+            </TouchableOpacity>
+          }
         </View>
       </View>
     );
@@ -79,9 +83,6 @@ const styles = StyleSheet.create({
     color: white,
     fontSize: 16,
     textAlign: 'center'
-  },
-  buttons: {
-    marginBottom: 60
   },
   container: {
     alignItems: 'center',

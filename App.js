@@ -10,6 +10,7 @@ import DeckList from './components/DeckList';
 import DeckShow from './components/DeckShow';
 import NewCard from './components/NewCard';
 import NewDeck from './components/NewDeck';
+import Quiz from './components/Quiz';
 
 import reducer from './reducers';
 
@@ -76,6 +77,15 @@ const MainNavigator = createStackNavigator({
       },
       headerTintColor: white,
       title: 'Add Card'
+    }
+  },
+  Quiz: {
+    screen: Quiz,
+    navigationOptions: {
+      headerStyle: {
+        backgroundColor: green
+      },
+      headerTintColor: white
     }
   }
 });
