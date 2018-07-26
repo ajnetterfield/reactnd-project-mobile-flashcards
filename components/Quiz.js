@@ -41,6 +41,20 @@ class Quiz extends React.Component {
     }));
   }
 
+  handleRestartQuiz = () => {
+    this.setState({
+      correct: 0,
+      currentCard: 0,
+      flipped: false
+    });
+  }
+
+  handleBackToDeck = () => {
+    this.props.navigation.navigate('DeckShow', {
+      title: this.props.deck.title
+    });
+  }
+
   render() {
     const { deck } = this.props;
     const { correct, currentCard, flipped } = this.state;
@@ -52,16 +66,28 @@ class Quiz extends React.Component {
       const failed = score < 50;
 
       return (
-        <View style={styles.scoreContainer}>
-          <Ionicons
-            name={failed ? 'ios-sad-outline' : 'ios-happy-outline'}
-            size={90}
-            color={failed ? red : green}
-          />
+        <View style={styles.container}>
+          <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+            <Ionicons
+              name={failed ? 'ios-sad-outline' : 'ios-happy-outline'}
+              size={90}
+              color={failed ? red : green}
+            />
 
-          <Text style={[styles.score, { color: failed ? red : green }]}>
-            You scored {score}%
-          </Text>
+            <Text style={[styles.score, { color: failed ? red : green }]}>
+              You scored {score}%
+            </Text>
+          </View>
+
+          <View style={{ marginBottom: 30 }}>
+            <TouchableOpacity onPress={this.handleRestartQuiz} style={[styles.button, styles.buttonSecondary]}>
+              <Text style={[styles.buttonText, styles.buttonTextSecondary]}>Restart Quiz</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity onPress={this.handleBackToDeck} style={[styles.button, { marginTop: 15 }]}>
+              <Text style={styles.buttonText}>Back to Deck</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       );
     }
@@ -119,10 +145,18 @@ const styles = StyleSheet.create({
     paddingRight: 30,
     paddingTop: 10
   },
+  buttonSecondary: {
+    backgroundColor: white,
+    borderColor: green,
+    borderWidth: 1
+  },
   buttonText: {
     color: white,
     fontSize: 20,
     textAlign: 'center'
+  },
+  buttonTextSecondary: {
+    color: green
   },
   buttonIncorrect: {
     backgroundColor: red
@@ -137,13 +171,6 @@ const styles = StyleSheet.create({
   details: {
     alignItems: 'center',
     flex: 1
-  },
-  scoreContainer: {
-    alignItems: 'center',
-    backgroundColor: white,
-    flex: 1,
-    justifyContent: 'center',
-    paddingBottom: 30
   },
   score: {
     fontSize: 30
