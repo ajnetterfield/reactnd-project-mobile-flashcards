@@ -14,14 +14,6 @@ You will need to install either [npm](https://github.com/npm/npm) or [yarn](http
 * start the development server with `npm start` or `yarn start`.
 * follow the instructions from expo to open the app in a simulator or a mobile device.
 
-## Contributing
-
-See [CONTRIBUTING.md](CONTRIBUTING.md) for information.
-
-## Acknowledgments
-
-This project was built from Udacity's [Starter Code for the Would You Rather Project](https://github.com/udacity/reactnd-project-would-you-rather-starter).
-
 ## Authors
 
 * [@ajnetterfield](https://github.com/ajnetterfield)
