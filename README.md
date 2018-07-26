@@ -1,6 +1,6 @@
 # Mobile Flashcards Project
 
-A mobile app that allows you build decks of questions to quiz yourself on.
+An iOS app that allows you build decks of questions to quiz yourself on.
 
 ## Getting Started
 
@@ -8,11 +8,15 @@ A mobile app that allows you build decks of questions to quiz yourself on.
 
 You will need to install either [npm](https://github.com/npm/npm) or [yarn](https://github.com/yarnpkg/yarn) before installing this project.
 
+You will also need access to an iOS simulator or mobile device to run the app.
+
+Please note this app has only been tested on iOS devices.
+
 ### Installing
 
 * install all project dependencies with `npm install` or `yarn`.
 * start the development server with `npm start` or `yarn start`.
-* follow the instructions from expo to open the app in a simulator or a mobile device.
+* follow the instructions from expo to open the app in an iOS simulator or a mobile device.
 
 ## Authors
 
