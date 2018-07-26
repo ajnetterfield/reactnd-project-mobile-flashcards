@@ -51,7 +51,7 @@ class NewDeck extends React.Component {
           <TextInput
             autoFocus
             onChangeText={this.handleChangeText}
-            placeholder="Deck Title"
+            placeholder="e.g. React Nanodegree"
             style={styles.textInput}
             value={this.state.title}
           />
