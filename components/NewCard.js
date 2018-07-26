@@ -45,15 +45,16 @@ class NewCard extends React.Component {
         question
       };
 
-      this.props.handleAddCard(title, card);
+      this.props.handleAddCard(title, card)
+        .then(() => {
+          this.setState({
+            answer: '',
+            hasError: false,
+            question: ''
+          });
 
-      this.setState({
-        answer: '',
-        hasError: false,
-        question: ''
-      });
-
-      this.props.navigation.goBack();
+          this.props.navigation.goBack();
+        });
     }
   }
 

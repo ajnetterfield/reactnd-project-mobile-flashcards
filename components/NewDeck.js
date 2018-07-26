@@ -31,14 +31,17 @@ class NewDeck extends React.Component {
         hasError: true
       });
     } else {
-      this.props.handleAddDeck(title);
+      this.props.handleAddDeck(title)
+        .then(() => {
+          this.setState({
+            hasError: false,
+            title: ''
+          });
 
-      this.setState({
-        hasError: false,
-        title: ''
-      });
-
-      this.props.navigation.goBack();
+          this.props.navigation.navigate('DeckShow', {
+            title
+          });
+        });
     }
   }
 
