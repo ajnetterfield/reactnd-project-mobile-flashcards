@@ -1,10 +1,23 @@
 import {
+  ADD_CARD,
   ADD_DECK,
   RECEIVE_DECKS
 } from '../actions';
 
 const decks = (state = {}, action) => {
   switch(action.type) {
+    case ADD_CARD:
+      return {
+        ...state,
+        [action.title]: {
+          ...state[action.title],
+          cards: [
+            ...state[action.title].cards,
+            action.card
+          ]
+        }
+      };
+
     case ADD_DECK:
       return {
         ...state,

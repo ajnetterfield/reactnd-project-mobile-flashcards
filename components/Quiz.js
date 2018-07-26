@@ -50,7 +50,7 @@ class Quiz extends React.Component {
       return (
         <View style={[styles.container, { justifyContent: 'center' }]}>
           <Text style={{ fontSize: 30 }}>
-            You scored {(100 * correct) / totalCards}%
+            You scored {parseInt((100 * correct) / totalCards, 10)}%
           </Text>
         </View>
       );
@@ -90,13 +90,9 @@ class Quiz extends React.Component {
   }
 }
 
-const mapStateToProps = (decks, { navigation }) => {
-  const { title } = navigation.state.params;
-
-  return {
-    deck: decks[title]
-  }
-};
+const mapStateToProps = (decks, { navigation }) => ({
+  deck: decks[navigation.state.params.title]
+});
 
 const styles = StyleSheet.create({
   answer: {

@@ -5,13 +5,14 @@ import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-nativ
 
 import { handleAddDeck } from '../actions';
 
-import { green, white } from '../utils/colors';
+import { green, red, white } from '../utils/colors';
 
 class NewDeck extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
+      hasError: false,
       title: ''
     };
   }
@@ -23,19 +24,22 @@ class NewDeck extends React.Component {
   }
 
   handleSubmit = () => {
-    this.props.handleAddDeck(this.state.title);
+    const { title } = this.state;
 
-    this.setState({
-      title: ''
-    });
+    if (title === '') {
+      this.setState({
+        hasError: true
+      });
+    } else {
+      this.props.handleAddDeck(title);
 
-    this.navigateBack();
-  }
+      this.setState({
+        hasError: false,
+        title: ''
+      });
 
-  navigateBack = () => {
-    this.props.navigation.dispatch(NavigationActions.back({
-      key: 'NewDeck'
-    }));
+      this.props.navigation.goBack();
+    }
   }
 
   render() {
@@ -56,6 +60,10 @@ class NewDeck extends React.Component {
         >
           <Text style={styles.buttonText}>Submit</Text>
         </TouchableOpacity>
+
+        {this.state.hasError && (
+          <Text style={styles.errorText}>Please enter a title for the deck</Text>
+        )}
       </View>
     );
   }
@@ -68,6 +76,11 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 30
   },
+  errorText: {
+    color: red,
+    fontSize: 16,
+    marginTop: 20
+  },
   label: {
     fontSize: 20,
     marginBottom: 15
@@ -76,6 +89,7 @@ const styles = StyleSheet.create({
     backgroundColor: green,
     borderRadius: 5,
     height: 40,
+    marginTop: 15,
     paddingBottom: 10,
     paddingLeft: 30,
     paddingRight: 30,
