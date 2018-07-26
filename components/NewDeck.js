@@ -45,51 +45,40 @@ class NewDeck extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.label}>What is the title of your new deck?</Text>
+        <View style={{ flex: 1 }}>
+          <Text style={styles.label}>What is the title of your new deck?</Text>
 
-        <TextInput
-          onChangeText={this.handleChangeText}
-          style={styles.textInput}
-          placeholder="Deck Title"
-          value={this.state.title}
-        />
+          <TextInput
+            autoFocus
+            onChangeText={this.handleChangeText}
+            placeholder="Deck Title"
+            style={styles.textInput}
+            value={this.state.title}
+          />
+        </View>
 
-        <TouchableOpacity
-          style={styles.button}
-          onPress={this.handleSubmit}
-        >
-          <Text style={styles.buttonText}>Submit</Text>
-        </TouchableOpacity>
+        <View>
+          {this.state.hasError && (
+            <Text style={styles.errorText}>Please enter a title for the deck</Text>
+          )}
 
-        {this.state.hasError && (
-          <Text style={styles.errorText}>Please enter a title for the deck</Text>
-        )}
+          <TouchableOpacity
+            style={styles.button}
+            onPress={this.handleSubmit}
+          >
+            <Text style={styles.buttonText}>Submit</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    alignItems: 'center',
-    backgroundColor: white,
-    flex: 1,
-    padding: 30
-  },
-  errorText: {
-    color: red,
-    fontSize: 16,
-    marginTop: 20
-  },
-  label: {
-    fontSize: 20,
-    marginBottom: 15
-  },
   button: {
     backgroundColor: green,
     borderRadius: 5,
-    height: 40,
-    marginTop: 15,
+    height: 46,
     paddingBottom: 10,
     paddingLeft: 30,
     paddingRight: 30,
@@ -97,8 +86,25 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: white,
-    fontSize: 16,
+    fontSize: 20,
     textAlign: 'center'
+  },
+  container: {
+    backgroundColor: white,
+    flex: 1,
+    justifyContent: 'space-between',
+    paddingHorizontal: 30,
+    paddingVertical: 25
+  },
+  errorText: {
+    color: red,
+    fontSize: 16,
+    marginBottom: 20,
+    textAlign: 'center'
+  },
+  label: {
+    fontSize: 20,
+    marginBottom: 15
   },
   textInput: {
     borderColor: '#000',

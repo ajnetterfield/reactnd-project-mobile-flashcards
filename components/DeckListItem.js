@@ -1,6 +1,8 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
+import { grey } from '../utils/colors';
+
 export default class DeckListItem extends React.Component {
   render() {
     const { deck } = this.props;
@@ -21,19 +23,21 @@ const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
     backgroundColor: '#fff',
-    borderBottomColor: '#999',
+    borderBottomColor: grey,
     borderBottomWidth: 1,
     flex: 1,
     justifyContent: 'center',
-    paddingBottom: 30,
-    paddingTop: 30
+    paddingHorizontal: 30,
+    paddingVertical: 25
   },
   title: {
     fontSize: 24,
-    marginBottom: 5
+    marginBottom: 5,
+    textAlign: 'center'
   },
   cardCount: {
-    color: '#999',
-    fontSize: 14
+    color: grey,
+    fontSize: 14,
+    textAlign: 'center'
   }
 });

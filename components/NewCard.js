@@ -60,56 +60,49 @@ class NewCard extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.label}>Question</Text>
+        <View style={{ flex: 1 }}>
+          <Text style={styles.label}>Question</Text>
 
-        <TextInput
-          onChangeText={this.handleChangeQuestion}
-          style={styles.textInput}
-          placeholder="Question"
-          value={this.state.question}
-        />
+          <TextInput
+            autoFocus
+            onChangeText={this.handleChangeQuestion}
+            placeholder="e.g. What is React?"
+            style={styles.textInput}
+            value={this.state.question}
+          />
 
-        <Text style={styles.label}>Answer</Text>
+          <Text style={styles.label}>Answer</Text>
 
-        <TextInput
-          onChangeText={this.handleChangeAnswer}
-          style={styles.textInput}
-          placeholder="Answer"
-          value={this.state.answer}
-        />
+          <TextInput
+            onChangeText={this.handleChangeAnswer}
+            placeholder="e.g. A library for managing user interfaces"
+            style={styles.textInput}
+            value={this.state.answer}
+          />
+        </View>
 
-        <TouchableOpacity
-          style={styles.button}
-          onPress={this.handleSubmit}
-        >
-          <Text style={styles.buttonText}>Submit</Text>
-        </TouchableOpacity>
+        <View style={{ marginBottom: 30 }}>
+          {this.state.hasError && (
+            <Text style={styles.errorText}>Please enter a question and an answer</Text>
+          )}
 
-        {this.state.hasError && (
-          <Text style={styles.errorText}>Please enter a question and an answer</Text>
-        )}
+          <TouchableOpacity
+            style={styles.button}
+            onPress={this.handleSubmit}
+          >
+            <Text style={styles.buttonText}>Submit</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    alignItems: 'center',
-    backgroundColor: white,
-    flex: 1,
-    padding: 30
-  },
-  errorText: {
-    color: red,
-    fontSize: 16,
-    marginTop: 20
-  },
   button: {
     backgroundColor: green,
     borderRadius: 5,
-    height: 40,
-    marginTop: 15,
+    height: 46,
     paddingBottom: 10,
     paddingLeft: 30,
     paddingRight: 30,
@@ -117,7 +110,20 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: white,
+    fontSize: 20,
+    textAlign: 'center'
+  },
+  container: {
+    backgroundColor: white,
+    flex: 1,
+    justifyContent: 'space-between',
+    paddingHorizontal: 30,
+    paddingVertical: 25
+  },
+  errorText: {
+    color: red,
     fontSize: 16,
+    marginBottom: 20,
     textAlign: 'center'
   },
   label: {

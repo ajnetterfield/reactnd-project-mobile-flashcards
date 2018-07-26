@@ -2,11 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
-import { green, white } from '../utils/colors';
+import { green, grey, white } from '../utils/colors';
 
 class DeckShow extends React.Component {
   static navigationOptions = ({ navigation }) => ({
-    title: `${navigation.state.params.title} Deck`
+    title: navigation.state.params.title
   });
 
   handleNewCard = (title) => {
@@ -34,13 +34,13 @@ class DeckShow extends React.Component {
           </Text>
         </View>
 
-        <View style={{ marginBottom: 60 }}>
+        <View style={{ marginBottom: 30 }}>
           <TouchableOpacity onPress={() => this.handleNewCard(deck.title)} style={[styles.button, styles.buttonSecondary]}>
             <Text style={[styles.buttonText, styles.buttonTextSecondary]}>Add Card</Text>
           </TouchableOpacity>
 
           {deck.cards.length > 0 &&
-            <TouchableOpacity onPress={() => this.handleStartQuiz(deck.title)} style={[styles.button, { marginTop: 10 }]}>
+            <TouchableOpacity onPress={() => this.handleStartQuiz(deck.title)} style={[styles.button, { marginTop: 15 }]}>
               <Text style={styles.buttonText}>Start Quiz</Text>
             </TouchableOpacity>
           }
@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
   button: {
     backgroundColor: green,
     borderRadius: 5,
-    height: 40,
+    height: 46,
     paddingBottom: 10,
     paddingLeft: 30,
     paddingRight: 30,
@@ -78,26 +78,28 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: white,
-    fontSize: 16,
+    fontSize: 20,
     textAlign: 'center'
   },
   container: {
-    alignItems: 'center',
     backgroundColor: white,
-    flex: 1
+    flex: 1,
+    paddingHorizontal: 30,
+    paddingVertical: 25
   },
   details: {
     alignItems: 'center',
-    flex: 1,
-    padding: 60
+    flex: 1
   },
   title: {
-    fontSize: 48,
+    textAlign: 'center',
+    fontSize: 32,
     marginBottom: 5
   },
   cardCount: {
-    color: '#999',
-    fontSize: 28
+    color: grey,
+    fontSize: 22,
+    marginTop: 15
   }
 });
 

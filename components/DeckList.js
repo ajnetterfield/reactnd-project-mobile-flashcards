@@ -28,7 +28,7 @@ class DeckList extends React.Component {
   render() {
     const { decks } = this.props;
 
-    const titles = Object.keys(decks);
+    const titles = Object.keys(decks).sort();
 
     if (titles.length === 0) {
       return (
