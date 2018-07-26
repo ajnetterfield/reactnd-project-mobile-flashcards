@@ -1,6 +1,7 @@
 import React from 'react';
+import thunk from 'redux-thunk';
 import { createBottomTabNavigator, createStackNavigator } from 'react-navigation';
-import { createStore } from 'redux';
+import { applyMiddleware, createStore } from 'redux';
 import { Ionicons } from '@expo/vector-icons';
 import { Platform, StyleSheet, Text, View } from 'react-native';
 import { Provider } from 'react-redux';
@@ -16,7 +17,7 @@ import reducer from './reducers';
 
 import { green, white } from './utils/colors';
 
-const store = createStore(reducer);
+const store = createStore(reducer, applyMiddleware(thunk));
 
 const Tabs = createBottomTabNavigator({
   DeckList: {

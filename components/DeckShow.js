@@ -4,9 +4,6 @@ import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 import { green, white } from '../utils/colors';
 
-// TODO: Retrieve data from Local Storage
-import decks from '../utils/data';
-
 class DeckShow extends React.Component {
   static navigationOptions = ({ navigation }) => ({
     title: `${navigation.state.params.title} Deck`
@@ -33,7 +30,7 @@ class DeckShow extends React.Component {
           <Text style={styles.title}>{deck.title}</Text>
 
           <Text style={styles.cardCount}>
-            {deck.questions.length} {deck.questions.length === 1 ? 'card' : 'cards'}
+            {deck.cards.length} {deck.cards.length === 1 ? 'card' : 'cards'}
           </Text>
         </View>
 
@@ -42,7 +39,7 @@ class DeckShow extends React.Component {
             <Text style={[styles.buttonText, styles.buttonTextSecondary]}>Add Card</Text>
           </TouchableOpacity>
 
-          {deck.questions.length > 0 &&
+          {deck.cards.length > 0 &&
             <TouchableOpacity onPress={() => this.handleStartQuiz(deck.title)} style={[styles.button, { marginTop: 10 }]}>
               <Text style={styles.buttonText}>Start Quiz</Text>
             </TouchableOpacity>
@@ -53,7 +50,7 @@ class DeckShow extends React.Component {
   }
 }
 
-const mapStateToProps = (state, { navigation }) => {
+const mapStateToProps = (decks, { navigation }) => {
   const { title } = navigation.state.params;
 
   return {

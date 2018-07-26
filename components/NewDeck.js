@@ -1,9 +1,13 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { NavigationActions } from 'react-navigation';
 import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+
+import { handleAddDeck } from '../actions';
 
 import { green, white } from '../utils/colors';
 
-export default class NewDeck extends React.Component {
+class NewDeck extends React.Component {
   constructor(props) {
     super(props);
 
@@ -19,7 +23,19 @@ export default class NewDeck extends React.Component {
   }
 
   handleSubmit = () => {
-    // TODO: Update data in Local Storage
+    this.props.handleAddDeck(this.state.title);
+
+    this.setState({
+      title: ''
+    });
+
+    this.navigateBack();
+  }
+
+  navigateBack = () => {
+    this.props.navigation.dispatch(NavigationActions.back({
+      key: 'NewDeck'
+    }));
   }
 
   render() {
@@ -80,3 +96,9 @@ const styles = StyleSheet.create({
     width: '100%'
   }
 });
+
+const mapDispatchToProps = {
+  handleAddDeck
+};
+
+export default connect(null, mapDispatchToProps)(NewDeck);

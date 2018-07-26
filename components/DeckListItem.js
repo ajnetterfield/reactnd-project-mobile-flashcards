@@ -10,7 +10,7 @@ export default class DeckListItem extends React.Component {
         <Text style={styles.title}>{deck.title}</Text>
 
         <Text style={styles.cardCount}>
-          {deck.questions.length} {deck.questions.length === 1 ? 'card' : 'cards'}
+          {deck.cards.length} {deck.cards.length === 1 ? 'card' : 'cards'}
         </Text>
       </View>
     );
@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
     backgroundColor: '#fff',
-    borderBottomColor: '#000',
+    borderBottomColor: '#999',
     borderBottomWidth: 1,
     flex: 1,
     justifyContent: 'center',

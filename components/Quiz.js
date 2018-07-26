@@ -4,9 +4,6 @@ import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 import { green, red, white } from '../utils/colors';
 
-// TODO: Retrieve data from Local Storage
-import decks from '../utils/data';
-
 class Quiz extends React.Component {
   static navigationOptions = ({ navigation }) => ({
     title: `${navigation.state.params.title} Quiz`
@@ -47,7 +44,7 @@ class Quiz extends React.Component {
     const { deck } = this.props;
     const { correct, currentCard, flipped } = this.state;
 
-    const totalCards = deck.questions.length;
+    const totalCards = deck.cards.length;
 
     if (currentCard >= totalCards) {
       return (
@@ -59,7 +56,7 @@ class Quiz extends React.Component {
       );
     }
 
-    const card = deck.questions[currentCard];
+    const card = deck.cards[currentCard];
 
     return (
       <View style={styles.container}>
@@ -93,7 +90,7 @@ class Quiz extends React.Component {
   }
 }
 
-const mapStateToProps = (state, { navigation }) => {
+const mapStateToProps = (decks, { navigation }) => {
   const { title } = navigation.state.params;
 
   return {
