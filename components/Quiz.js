@@ -4,6 +4,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 import { green, red, white } from '../utils/colors';
+import { clearLocalNotifications, setLocalNotification } from '../utils/notifications';
 
 class Quiz extends React.Component {
   static navigationOptions = ({ navigation }) => ({
@@ -18,6 +19,14 @@ class Quiz extends React.Component {
       currentCard: 0,
       flipped: false
     };
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.currentCard > prevState.currentCard) {
+      if (this.state.currentCard >= this.props.deck.cards.length) {
+        clearLocalNotifications().then(setLocalNotification);
+      }
+    }
   }
 
   handleCorrect = () => {

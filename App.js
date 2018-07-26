@@ -15,6 +15,7 @@ import Quiz from './components/Quiz';
 
 import reducer from './reducers';
 
+import { setLocalNotification } from './utils/notifications';
 import { green, white } from './utils/colors';
 
 const store = createStore(reducer, applyMiddleware(thunk));
@@ -92,6 +93,10 @@ const MainNavigator = createStackNavigator({
 });
 
 export default class App extends React.Component {
+  componentDidMount() {
+    setLocalNotification();
+  }
+
   render() {
     return (
       <Provider store={store}>
